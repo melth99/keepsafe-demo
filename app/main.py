@@ -75,6 +75,15 @@ def rate_limit_handler(e):
     print(f"email:{get_email()}\n")
     return jsonify({"error":"Too many requests, slow down"}), 429
 
+@app.errorhandler(500)
+def internal_error(e):
+    print(f"INTERNAL ERROR: {e}")
+    return jsonify({"error": "internal server error"}), 500
+
+@app.errorhandler(503)
+def service_unavailable(e):
+    print(f"SERVICE UNAVAILABLE: {e}")
+    return jsonify({"error": "service unavailable"}), 503
 
 def login_required(f):
     @wraps(f)
