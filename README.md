@@ -1,5 +1,5 @@
 # Hi Keepsafe!
-## Welcome to my demo 🧑‍🏫
+## :100: Welcome to my demo 🧑‍🏫
 
 
 ### 🚀 Features
@@ -45,21 +45,59 @@ POST http://0.0.0.0:8000/file/<file_name>
   
   __LOCKOUT_WINDOW_SECONDS:__ Duration of the login ban - default at 15 minutes.
 
-### Steps
-1) Set up Docker container
-2)  Create an acccount with an email and a device ID string. If you already have an account set up, skip this step.
+### 💾 Steps
+## 💫 1)
+Set up Docker container
+
+## 💫 2)  Create an acccount with an email and a device ID string. If you already have an account set up, skip this step.
  ```
 curl -X POST http://localhost:8000/sign-up \
   -d "email=example@example.com"
  ```
-3) Log in by requesting a verification code. You should recieve a code in this format: ```{"code":"0000","message":"code sent"}``` 
+
+## 💫 3) Log in by requesting a verification code. You should recieve a code in this format: ```{"code":"0000","message":"code sent"}``` 
   ```
   curl -X POST http://localhost:8000/auth/code/request \
   -d "email=example@example.com&device_id=my-phone"
   ```
-4) Using that provided 4-digit code, verify your account.
+
+
+## 💫 4) 
+Using that provided 4-digit code, verify your account.
 ```
 curl -X POST http://localhost:8000/auth/code/verify \
   -d "code=0000&device_id=my-phone&email=example@example.com"
 ```
-5) To upload a file first make sure you have your desired file in the uploads/ folder. I have some pre-made example files there already.
+you should recieve this warning with the bearer code:
+```
+{"expires_in":" You have 30 minutes","session_token":"***INSERT*TOKEN*HERE***"}
+```
+:warning: make sure to savve this token.
+
+## 💫 5) 
+To upload a file first make sure you have your desired file in the uploads/ folder. I have some pre-made example files there already.
+```
+curl -X POST http://localhost:8000/file/myfile.csv \
+  -H "Authorization: Bearer ***INSERT*TOKEN*HERE***"
+```
+you should receieve this confirmation:
+``` {"file":"myfile.csv","message":"uploaded!"} ```
+
+## 💫 6) 
+To download a file:
+```
+curl http://localhost:8000/file/myfile.csv \
+  -H "Authorization: Bearer ***INSERT*TOKEN*HERE***"
+```
+verify the "myfile.csv" is located in your downloads/ folder.
+the file should also be printed out in the terminal "this is my csv file called myfile.csv"
+
+## 💫 7)
+When you're done with this session:
+```
+curl -X POST http://localhost:8000/sign-out \
+  -H "Authorization: Bearer ***INSERT*TOKEN*HERE***"
+```
+
+
+
