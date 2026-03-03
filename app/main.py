@@ -272,6 +272,10 @@ def download_file(file_name):
     with open(storage_path, "rb") as f:
         file_data=f.read()
 
+    os.makedirs("downloads", exist_ok=True)
+    with open(f"downloads/{file_name}", "wb") as f:
+        f.write(file_data)
+
     return file_data, 200
 
 
