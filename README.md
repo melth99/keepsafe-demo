@@ -99,5 +99,8 @@ curl -X POST http://localhost:8000/sign-out \
   -H "Authorization: Bearer ***INSERT*TOKEN*HERE***"
 ```
 
+### If you want an easy copy/paste template - I have everything listed out clearly in "curl_statements.txt".
+
+
 
 
