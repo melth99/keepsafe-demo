@@ -1,10 +1,12 @@
-
+Sign up
 curl -X POST http://localhost:8000/sign-up \
   -d "email=example@example.com"
 
+Request
 curl -X POST http://localhost:8000/auth/code/request \
   -d "email=example@example.com&device_id=my-phone"
 
+Verify
 curl -X POST http://localhost:8000/auth/code/verify \
   -d "code=XXXX&device_id=my-phone&email=example@example.com"
 
@@ -15,17 +17,18 @@ curl http://localhost:8000/ \
   -H "Authorization: Bearer **TOKEN"
 
 
-
+Upload
 curl -X POST http://localhost:8000/file/hello.txt \
+  --data-binary @uploads/myfile.csv \
   -H "Authorization: Bearer **TOKEN**"
 
-
+Download
 curl http://localhost:8000/file/hello.txt \
   -H "Authorization: Bearer **TOKEN**"
 
   #check downloads folder after
 
-
+Sign out
 curl -X POST http://localhost:8000/sign-out \
   -H "Authorization: Bearer **TOKEN**"
 
