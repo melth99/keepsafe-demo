@@ -1,0 +1,34 @@
+
+curl -X POST http://localhost:8000/sign-up \
+  -d "email=example@example.com"
+
+
+
+curl -X POST http://localhost:8000/auth/code/request \
+  -d "email=example@example.com&device_id=my-phone"
+
+curl -X POST http://localhost:8000/auth/code/verify \
+  -d "code=9023&device_id=my-phone&email=example@example.com"
+
+Save your token for login required routes
+TOKEN=
+
+curl http://localhost:8000/ \
+  -H "Authorization: Bearer **TOKEN"
+
+
+
+curl -X POST http://localhost:8000/file/myfile.csv \
+  -H "Authorization: Bearer Sy63Kc7cPWxIuUqFNPOTuS3ISwthmJSQ9Em_d-Zge7I"
+
+
+curl http://localhost:8000/file/myfile.csv \
+  -H "Authorization: Bearer Sy63Kc7cPWxIuUqFNPOTuS3ISwthmJSQ9Em_d-Zge7I"
+
+  #check downloads folder after
+
+
+curl -X POST http://localhost:8000/sign-out \
+  -H "Authorization: Bearer **TOKEN**"
+
+

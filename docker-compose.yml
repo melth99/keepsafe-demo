@@ -1,0 +1,14 @@
+services:
+  keepsafe:
+    build:
+      context: .
+      dockerfile: enviroment/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - keepsafe-data:/app/storage
+      - ./uploads:/app/uploads
+      - ./downloads:/app/downloads
+
+volumes:
+  keepsafe-data:

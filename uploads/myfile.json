@@ -1,0 +1,5 @@
+{
+    "name": "myfile.json",
+    "content": "this is my json file called myfile.json",
+    "success": "This download was successful"
+}
