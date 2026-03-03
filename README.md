@@ -78,6 +78,7 @@ you should recieve this warning with the bearer code:
 To upload a file first make sure you have your desired file in the uploads/ folder. I have some pre-made example files there already.
 ```
 curl -X POST http://localhost:8000/file/myfile.csv \
+  --data-binary @uploads/myfile.csv \
   -H "Authorization: Bearer ***INSERT*TOKEN*HERE***"
 ```
 you should receieve this confirmation:
