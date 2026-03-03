@@ -250,24 +250,20 @@ def sign_out():
     return jsonify({"message":"signed user out"}), 200
 
 
-@app.route("/file/<file_name>", methods=["POST"]) #uplaoding
+@app.route("/file/<file_name>", methods=["POST"])
 @login_required
 def upload_file(file_name):
-    upload_path=f"uploads/{file_name}"
+    data = request.get_data() 
+    if not data:
+        return jsonify({"error": "no file content"}), 400
 
-    if not os.path.exists(upload_path):
-        return jsonify({"error" :f"{file_name} not found in /uploads"}), 404
-
-    with open(upload_path, "rb") as f:
-        data=f.read()
-
-    folder=f"storage/{g.user_id}"
+    folder = f"storage/{g.user_id}"
     os.makedirs(folder, exist_ok=True)
 
     with open(f"{folder}/{file_name}", "wb") as f:
         f.write(data)
 
-    return jsonify({"message":"uploaded!", "file": file_name}), 200
+    return jsonify({"message": "uploaded!", "file": file_name}), 200
 
 
 @app.route("/file/<file_name>", methods=["GET"]) #this is to download and place in downloads folder
